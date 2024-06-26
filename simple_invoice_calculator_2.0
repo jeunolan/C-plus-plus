@@ -1,0 +1,84 @@
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{ 
+    char customerChoice;
+    double subTotal;
+
+    //percentage of discount
+    double discountPercentage;
+    
+    //title
+    cout << "The Invoice Total Calculator 2.0\n\n";
+
+ //   char customer_choice;
+    cout << "Enter the customer type (r/w/c): ";
+    cin >> customerChoice;
+
+    cout << "Enter subtotal:                  ";
+    cin >> subTotal;  
+
+/*switch statement that determines discount rate based on individual
+(r) = >= $250 but < $500 get a 20%
+(w) = >= $500 get a 30%
+(c)ollege = 25%*/
+
+    switch (customerChoice)
+    {
+    case 'r':
+    case 'R':
+        if (subTotal < 100) {
+            discountPercentage = 0;
+        }
+        else if (subTotal >= 100 && subTotal < 250) {
+            discountPercentage = .1;
+        }
+        else if (subTotal >=250 && subTotal < 500){
+            discountPercentage = .2;
+        }
+        else{
+            discountPercentage=.3;
+        }
+    break;
+//wholesale option
+    case 'w':
+    case 'W':
+        if (subTotal < 500){    
+            discountPercentage=.4;
+        }
+        else{
+            discountPercentage=.5;
+        }
+        break;
+//college discount
+    case 'c':
+    case 'C':
+        discountPercentage=.25;
+        break;
+//default
+
+    default:
+
+        discountPercentage = 0;
+        break;
+    }
+
+
+    double discountAmount = subTotal*discountPercentage;
+    discountAmount = round(discountAmount*100)/100;
+
+    double invoiceTotal = subTotal-discountAmount;
+    invoiceTotal = round(invoiceTotal*100)/100;
+
+    cout << "Discount percent:               " << discountPercentage << endl;
+    cout << "Discount amount:                " << discountAmount << endl;
+    cout << "SubTotal:                       " << subTotal<< endl;
+    cout << "Invoice total:                  " << invoiceTotal<<endl;
+
+    cout << "Bye!";
+
+
+}
